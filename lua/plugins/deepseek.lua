@@ -25,7 +25,22 @@ return {
         end,
       },
       strategies = {
-        chat = { adapter = "deepseek" },
+        chat = {
+          adapter = "deepseek",
+          tools = {
+            opts = {
+              default_tools = {
+                "agent",
+                "run_command",
+              },
+            },
+            ["run_command"] = {
+              opts = {
+                safe_commands = { "git status", "git show", "git diff", "git log", "ls", "pwd" },
+              },
+            },
+          },
+        },
         inline = { adapter = "deepseek" },
       },
     })
